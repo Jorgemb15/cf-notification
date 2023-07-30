@@ -13,5 +13,8 @@ steps:
   - --source=.
   - --timeout=540s
   - --trigger-topic=mq-notification
-  - --set-env-vars FOO=$test
+  - --set-env-vars 
+                    GMAIL_ADDRESS=$_GMAIL_ADDRESS
+                    PROJECT_ID=$_PROJECT_ID
+                    SENDGRID_API_KEY=$_SENDGRID_API_KEY
   waitFor: ['npmrc-copy']
