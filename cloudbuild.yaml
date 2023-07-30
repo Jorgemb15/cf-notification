@@ -3,6 +3,10 @@ steps:
   entrypoint: bash
   id: "npmrc-copy"
 - name: 'gcr.io/cloud-builders/gcloud'
+env:
+  - 'GMAIL_ADDRESS=$GMAIL_ADDRESS'
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'SENDGRID_API_KEY=$SENDGRID_API_KEY'
   args:
   - functions
   - deploy
@@ -13,6 +17,4 @@ steps:
   - --source=.
   - --timeout=540s
   - --trigger-topic=mq-notification
-  - --set-env-vars,
-              'GOOGLE_CLOUD_PROJECT=$PROJECT_ID',
   waitFor: ['npmrc-copy']
