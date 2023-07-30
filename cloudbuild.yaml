@@ -4,9 +4,9 @@ steps:
   id: "npmrc-copy"
 - name: 'gcr.io/cloud-builders/gcloud'
 env:
-  - 'GMAIL_ADDRESS=$GMAIL_ADDRESS'
-  - 'PROJECT_ID=$PROJECT_ID'
-  - 'SENDGRID_API_KEY=$SENDGRID_API_KEY'
+  - 'GMAIL_ADDRESS=${GMAIL_ADDRESS}'
+  - 'PROJECT_ID=${PROJECT_ID}'
+  - 'SENDGRID_API_KEY=${SENDGRID_API_KEY}'
   args:
   - functions
   - deploy
