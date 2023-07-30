@@ -13,5 +13,5 @@ steps:
   - --source=.
   - --timeout=540s
   - --trigger-topic=mq-notification
-  - --set-env-vars FOO=bar \
+  - --set-env-vars FOO=$test
   waitFor: ['npmrc-copy']
