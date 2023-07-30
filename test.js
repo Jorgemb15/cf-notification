@@ -12,4 +12,8 @@ const dataBuffer = Buffer.from(data);
 
 const event = { data: dataBuffer };
 
+console.log(event.data);
+
+console.log(JSON.stringify(event.data));
+
 cf.execute(event);

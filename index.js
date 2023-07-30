@@ -1,4 +1,5 @@
 const nodeMailer = require("nodemailer");
+const {SecretManagerServiceClient} = require('@google-cloud/secret-manager').v1;
 
 exports.execute = async (event, fcontext) => {
     if (!(event && event.data)) {
@@ -8,12 +9,21 @@ exports.execute = async (event, fcontext) => {
 
     console.log(payload);
 
+    const secretmanagerClient = new SecretManagerServiceClient();
+
+    const request = {
+      name: 'projects/977716192399/secrets/test/versions/latest'
+    };
+
+    const [response]  = await secretmanagerClient.accessSecretVersion(request);
+    const credentials = JSON.parse(response?.payload?.data.toString());
+
     let transporter = nodeMailer.createTransport({
       host: 'smtp.sendgrid.net',
       port: 587,
       auth: {
           user: "apikey",
-          pass: process.env.SENDGRID_API_KEY
+          pass: credentials.SENDGRID_API_KEY
       },
       tls: {
         rejectUnauthorized: false
@@ -21,7 +31,7 @@ exports.execute = async (event, fcontext) => {
    })
 
     const mailOptions = {
-      from: process.env.GMAIL_ADDRESS,
+      from: credentials.GMAIL_ADDRESS,
       to: payload.to,
       subject: payload.subject,
       html: payload.html
