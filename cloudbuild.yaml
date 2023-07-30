@@ -1,0 +1,30 @@
+steps:
+    - name: gcr.io/cloud-builders/gcloud
+      entrypoint: bash
+    - name: node:16.19.0-alpine
+      entrypoint: npm
+      args: ['ci']
+    - name: node:16.19.0-alpine
+      entrypoint: npm
+      args: ['run', 'build']
+    - name: gcr.io/cloud-builders/gcloud
+      args:
+          [
+              'functions',
+              'deploy',
+              'cf-notification',
+              '--trigger-topic',
+              'mq-notification',
+              '--runtime',
+              'nodejs16',
+              '--memory',
+              '256',
+              '--timeout',
+              '60S',
+              '--entry-point',
+              'execute',
+              '--set-env-vars',
+              'GOOGLE_CLOUD_PROJECT=$PROJECT_ID',
+              '--egress-settings',
+              'all',
+          ]
