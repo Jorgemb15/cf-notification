@@ -13,6 +13,6 @@ steps:
   - --source=.
   - --timeout=540s
   - --trigger-topic=mq-notification
-  '--set-env-vars',
+  - --set-env-vars,
               'GOOGLE_CLOUD_PROJECT=$PROJECT_ID',
   waitFor: ['npmrc-copy']
