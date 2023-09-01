@@ -50,8 +50,6 @@ exports.execute = async (event, fcontext) => {
       html: content,
     };
 
-    console.log(content);
-
     transporter
       .sendMail(mailOptions)
       .then(() => {
