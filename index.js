@@ -41,7 +41,8 @@ exports.execute = async (event, fcontext) => {
       content = content.replace(regex, "" + val);
     }
 
-    console.log('hacia',element.recipient);
+    console.log('Hacia');
+    console.log(element.recipient);
 
     const mailOptions = {
       from: credentials.GMAIL_ADDRESS,
