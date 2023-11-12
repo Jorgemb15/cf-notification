@@ -6,16 +6,10 @@ const json = {
       params: {
         password: "123456",
       },
-      recipient: "jorgemb15@hotmail.es",
-    },
-    {
-      params: {
-        password: "321654",
-      },
-      recipient: "jorgemb15@hotmail.es",
+      recipient: "jorge.barrantes@gcdcr.com,jorgemb15@hotmail.es, jorgemb15@gmail.com",
     },
   ],
-  subject: "prueba",
+  subject: "testtesttest",
   template: "new-password.html",
 };
 
