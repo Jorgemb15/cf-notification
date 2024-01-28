@@ -11,6 +11,9 @@ exports.execute = async (event, fcontext) => {
 
   console.log(payload);
 
+  if (!payload?.customerId || !payload?.applicationId)
+    throw new Error(`Invalid payload: ${payload}`);
+
   const secretmanagerClient = new SecretManagerServiceClient();
 
   const request = {
@@ -32,7 +35,9 @@ exports.execute = async (event, fcontext) => {
     },
   });
 
-  const template = fs.readFileSync(`./templates/${payload?.template}`);
+  const template = fs.readFileSync(
+    `./templates/${payload.customerId}/${payload.applicationId}/${payload?.template}`
+  );
 
   for (const element of payload.recipients) {
     let content = template.toString();
@@ -41,7 +46,7 @@ exports.execute = async (event, fcontext) => {
       content = content.replace(regex, "" + val);
     }
 
-    console.log('Hacia:');
+    console.log("Hacia:");
     console.log(element.recipient);
 
     const mailOptions = {

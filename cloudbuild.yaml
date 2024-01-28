@@ -6,7 +6,7 @@ steps:
   args:
   - functions
   - deploy
-  - cf-notification
+  - cf-universal-notification
   - --entry-point=execute
   - --memory=512
   - --runtime=nodejs16
