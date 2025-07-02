@@ -9,7 +9,7 @@ steps:
   - cf-notification
   - --entry-point=execute
   - --memory=512
-  - --runtime=nodejs16
+  - --runtime=nodejs20
   - --source=.
   - --timeout=540s
   - --trigger-topic=mq-notification
